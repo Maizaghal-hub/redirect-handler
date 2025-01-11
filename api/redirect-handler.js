@@ -1,18 +1,14 @@
-const express = require('express');
-const app = express();
-
-app.get('/redirect-handler', (req, res) => {
+module.exports = (req, res) => {
     const custom5 = req.query.custom5;
 
-    let redirectUrl = 'https://xxar1z-kh.myshopify.com/collections'; // Default URL
+    // Default Shopify URL
+    let redirectUrl = 'https://xxar1z-kh.myshopify.com/collections';
     if (custom5 === 'extraverted') {
         redirectUrl = 'https://xxar1z-kh.myshopify.com/collections/extraverted';
     } else if (custom5 === 'introverted') {
         redirectUrl = 'https://xxar1z-kh.myshopify.com/collections/introverted';
     }
 
+    // Redirect the user
     res.redirect(redirectUrl);
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+};
